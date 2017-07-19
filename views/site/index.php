@@ -12,14 +12,14 @@ $this->title = 'My Yii Application';
 
         <div class="row">
             <div class="col-md-4 col-md-offset-2">
-                <a class="btn btn-primary btn-block" href="site/eventos">
+                <a class="btn btn-primary btn-block" href="site/asistencia-capacitaciones">
                     Asistencias
                 </a>
                 
             </div>
 
             <div class="col-md-4 col-md-offset-2">
-                <a class="btn btn-primary btn-block" href="site/eventos">
+                <a class="btn btn-primary btn-block" href="site/list-encuestas-by-fecha"">
                     Encuestas
                 </a>
                 

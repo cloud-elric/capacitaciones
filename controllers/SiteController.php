@@ -146,7 +146,7 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionAsistenciaCapacitaciones($id = 0){
+    public function actionAsistenciaCapacitaciones($id = 1){
         $data = EntCapacitaciones::find()->where(['id_evento'=>$id])->one();
         //Cambiar formato fecha
         $fch = new \DateTime($data->fch_creacion);
