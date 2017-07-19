@@ -11,8 +11,7 @@ use Yii;
  * @property string $txt_nombre
  * @property string $b_habilitado
  *
- * @property EntEncuestas[] $entEncuestas
- * @property EntUsuariosLista[] $entUsuariosListas
+ * @property EntCapacitaciones[] $entCapacitaciones
  */
 class EntEventos extends \yii\db\ActiveRecord
 {
@@ -51,16 +50,8 @@ class EntEventos extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getEntEncuestas()
+    public function getEntCapacitaciones()
     {
-        return $this->hasMany(EntEncuestas::className(), ['id_evento' => 'id_evento']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getEntUsuariosListas()
-    {
-        return $this->hasMany(EntUsuariosLista::className(), ['id_evento' => 'id_evento']);
+        return $this->hasMany(EntCapacitaciones::className(), ['id_evento' => 'id_evento']);
     }
 }
