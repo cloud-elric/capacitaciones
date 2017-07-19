@@ -61,6 +61,7 @@ class EntCapacitaciones extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+
     public function getEntEncuestas()
     {
         return $this->hasMany(EntEncuestas::className(), ['id_capacitacion' => 'id_capacitacion']);
@@ -74,6 +75,7 @@ class EntCapacitaciones extends \yii\db\ActiveRecord
         return $this->hasMany(EntUsuariosLista::className(), ['id_capacitacion' => 'id_capacitacion']);
     }
 
+
     public static function saveCapacitacion($idEvento){
         $capacitacion = new EntCapacitaciones();
         $capacitacion->id_evento = $idEvento;
@@ -86,4 +88,5 @@ class EntCapacitaciones extends \yii\db\ActiveRecord
 
         
     }
+
 }

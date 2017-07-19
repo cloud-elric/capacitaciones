@@ -16,6 +16,7 @@ use Yii;
  */
 class EntRespuestas extends \yii\db\ActiveRecord
 {
+
     /**
      * @inheritdoc
      */
