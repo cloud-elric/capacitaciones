@@ -12,6 +12,7 @@ use Yii;
  * @property string $fch_creacion
  *
  * @property EntEventos $idEvento
+ * @property EntEncuestas[] $entEncuestas
  * @property EntUsuariosLista[] $entUsuariosListas
  */
 class EntCapacitaciones extends \yii\db\ActiveRecord
@@ -60,8 +61,36 @@ class EntCapacitaciones extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+<<<<<<< HEAD
+=======
+    public function getEntEncuestas()
+    {
+        return $this->hasMany(EntEncuestas::className(), ['id_capacitacion' => 'id_capacitacion']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+>>>>>>> refs/remotes/origin/master
     public function getEntUsuariosListas()
     {
         return $this->hasMany(EntUsuariosLista::className(), ['id_capacitacion' => 'id_capacitacion']);
     }
+<<<<<<< HEAD
+=======
+
+
+    public static function saveCapacitacion($idEvento){
+        $capacitacion = new EntCapacitaciones();
+        $capacitacion->id_evento = $idEvento;
+        
+        if($capacitacion->save()){
+            return $capacitacion;
+        }else{
+            return false;
+        } 
+
+        
+    }
+>>>>>>> refs/remotes/origin/master
 }

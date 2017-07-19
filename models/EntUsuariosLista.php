@@ -8,11 +8,11 @@ use Yii;
  * This is the model class for table "ent_usuarios_lista".
  *
  * @property string $id_usuario_lista
- * @property string $id_evento
+ * @property string $id_capacitacion
  * @property string $txt_nombre_completo
  * @property string $fch_creacion
  *
- * @property EntEventos $idEvento
+ * @property EntCapacitaciones $idCapacitacion
  */
 class EntUsuariosLista extends \yii\db\ActiveRecord
 {
@@ -30,11 +30,11 @@ class EntUsuariosLista extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_evento', 'txt_nombre_completo'], 'required'],
-            [['id_evento'], 'integer'],
+            [['id_capacitacion', 'txt_nombre_completo'], 'required'],
+            [['id_capacitacion'], 'integer'],
             [['fch_creacion'], 'safe'],
             [['txt_nombre_completo'], 'string', 'max' => 200],
-            [['id_evento'], 'exist', 'skipOnError' => true, 'targetClass' => EntEventos::className(), 'targetAttribute' => ['id_evento' => 'id_evento']],
+            [['id_capacitacion'], 'exist', 'skipOnError' => true, 'targetClass' => EntCapacitaciones::className(), 'targetAttribute' => ['id_capacitacion' => 'id_capacitacion']],
         ];
     }
 
@@ -45,7 +45,7 @@ class EntUsuariosLista extends \yii\db\ActiveRecord
     {
         return [
             'id_usuario_lista' => 'Id Usuario Lista',
-            'id_evento' => 'Id Evento',
+            'id_capacitacion' => 'Id Capacitacion',
             'txt_nombre_completo' => 'Txt Nombre Completo',
             'fch_creacion' => 'Fch Creacion',
         ];
@@ -54,8 +54,8 @@ class EntUsuariosLista extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdEvento()
+    public function getIdCapacitacion()
     {
-        return $this->hasOne(EntEventos::className(), ['id_evento' => 'id_evento']);
+        return $this->hasOne(EntCapacitaciones::className(), ['id_capacitacion' => 'id_capacitacion']);
     }
 }
