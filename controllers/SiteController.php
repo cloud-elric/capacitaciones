@@ -9,6 +9,10 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\EntEventos;
+use yii\data\ActiveDataProvider;
+use app\models\EntUsuariosLista;
+use app\models\EntCapacitaciones;
 
 class SiteController extends Controller
 {
@@ -122,5 +126,42 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionEventos(){
+        $query = EntEventos::find()->where(['b_habilitado'=>1]);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query
+        ]);
+
+        return $this->render('eventos', [
+            'dataProvider' => $dataProvider
+        ]);
+    }
+
+    public function actionAsistenciaCapacitaciones($id = 0){
+        $query = EntCapacitaciones::find()->where(['id_evento'=>$id]);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query
+        ]);
+
+        return $this->render('asistenciaCapacitaciones', [
+            'dataProvider' => $dataProvider
+        ]);
+    }
+
+    public function actionMostrarAsistencia($fch = null){
+        $fecha = date($fch);
+		$maniana = strtotime('+1 day',strtotime($fecha));
+        $maniana = date('Y-m-d', $maniana);
+        
+        $query = EntUsuariosLista::find()->where(['>=', 'fch_creacion', $fch])->andWhere(['<=', 'fch_creacion', $maniana]);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query
+        ]);
+
+        return $this->render('mostrarAsistencia', [
+            'dataProvider' => $dataProvider
+        ]);
     }
 }
