@@ -9,7 +9,14 @@ use yii\filters\VerbFilter;
 
 class ApiController extends Controller
 {
-   
+    public $idEvento = 1;
 
+    public function actionSaveList(){
+
+         Yii::$app->response->format = Response::FORMAT_JSON;
+        $respuesta['error'] = true;
+        $respuesta['message'] = 'Faltan datos';
+
+    }
     
 }
