@@ -13,6 +13,9 @@ use app\models\EntEventos;
 use yii\data\ActiveDataProvider;
 use app\models\EntUsuariosLista;
 use app\models\EntCapacitaciones;
+use app\models\ViewFechasEncuestas;
+use app\models\EntRespuestas;
+use app\models\EntPreguntasEncuestas;
 
 class SiteController extends Controller
 {
@@ -163,5 +166,29 @@ class SiteController extends Controller
         return $this->render('mostrarAsistencia', [
             'dataProvider' => $dataProvider
         ]);
+    }
+
+    public function actionListEncuestasByFecha(){
+        $query = ViewFechasEncuestas::find();
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query
+        ]);
+
+        return $this->render("list-encuestas-by-fecha", ['dataProvider' => $dataProvider]);
+    }
+
+    public function actionMostrarDatosEncuesta($fch){
+        $idEncuesta = 1;
+
+        $respuestas = EntRespuestas::find()->where('date_format(fch_creacion,"%Y-%m-%d")=:fch', [':fch'=>$fch])->all();
+        $respuestasFecha = [];
+        foreach($respuestas as $respuesta){
+            $respuestasFecha[] = $respuesta->id_respuesta;
+        }
+
+        $preguntas = EntPreguntasEncuestas::find()->where('id_encuesta=:idEncuesta',[':idEncuesta'=>$idEncuesta])->all();
+    
+
+        return $this->render("mostrar-datos-encuesta", ['respuestasFecha'=>$respuestasFecha, 'preguntas'=>$preguntas]);
     }
 }

@@ -17,6 +17,8 @@ use Yii;
  */
 class EntRespuestasEncuestas extends \yii\db\ActiveRecord
 {
+
+    public $count_valores;
     /**
      * @inheritdoc
      */
