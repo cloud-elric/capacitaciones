@@ -25,25 +25,26 @@ class ApiController extends Controller
         $respuesta['error'] = true;
         $respuesta['message'] = 'Faltan datos';
 
-        if(isset($_REQUEST['asistentes'])){
-            $listaAsistentes = $_REQUEST['asistentes'];
+        if(isset($_REQUEST['nombre']) && isset($_REQUEST['apellido']) && isset($_REQUEST['correo'])){
+            //$listaAsistentes = $_REQUEST['asistentes'];
 
             $transaction = Yii::$app->db->beginTransaction(Transaction::SERIALIZABLE);
 
             $error = false;
 
             if($capacitacion = EntCapacitaciones::saveCapacitacion($this->idEvento)){
-                foreach($listaAsistentes as $asistentes){
+                //foreach($listaAsistentes as $asistentes){
                     $asistente = new EntUsuariosLista();
-                    $asistente->txt_nombre_completo = $asistentes['nombre'];
-                    $asistente->fch_creacion = $asistentes['fecha'];
-                    $asistente->id_capacitacion = $capacitacion->id_capacitacion;
+                    $asistente->txt_nombre_completo = $_REQUEST['nombre'];
+                    $asistente->txt_apellido = $_REQUEST['apellido'];
+                    $asistente->txt_correo = $_REQUEST['correo'];
+                    $asistente->id_capacitacion = 1;//$capacitacion->id_capacitacion;
 
                     if(!$asistente->save()){
                         $error = true;
                         $respuesta["errors"][0]=$asistente->errors;
                     }
-                }
+                //}
 
                 if($error){
                     $respuesta['message'] = 'Ocurrio un problema';
