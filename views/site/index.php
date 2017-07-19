@@ -9,7 +9,7 @@ $this->title = 'My Yii Application';
     
 
     <div class="body-content">
-
+<br><br>
         <div class="row">
             <div class="col-md-4 col-md-offset-2">
                 <a class="btn btn-primary btn-block" href="site/asistencia-capacitaciones">
@@ -18,7 +18,7 @@ $this->title = 'My Yii Application';
                 
             </div>
 
-            <div class="col-md-4 col-md-offset-2">
+            <div class="col-md-4">
                 <a class="btn btn-primary btn-block" href="site/list-encuestas-by-fecha"">
                     Encuestas
                 </a>
