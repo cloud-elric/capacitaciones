@@ -1,14 +1,21 @@
 <?php
 use app\models\EntRespuestasEncuestas;
 use yii\web\View;
+$this->params['breadcrumbs'][] = ['label' => 'Fecha encuestas', 'url' => ['list-encuestas-by-fecha']];
+$this->params['breadcrumbs'][] = 'Datos estadisticos';
 ?>
 <h1>Estadisticas</h1>
 
 <?php
 $i=0;
-foreach($preguntas as $pregunta){
-    echo $pregunta->txt_pregunta."<br>";
+foreach($preguntas as $pregunta){?>
 
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h4><?=$pregunta->txt_pregunta?></h4>
+    </div>
+    <div class="panel-body">
+<?php
     $respuestasValores = EntRespuestasEncuestas::find()
                             ->select(['COUNT(*) AS count_valores', 'txt_valor'])
                             ->where('id_pregunta=:idPregunta', [':idPregunta'=>$pregunta->id_pregunta])
@@ -19,17 +26,16 @@ foreach($preguntas as $pregunta){
     $labels = '';
     $valores = '';
     foreach($respuestasValores as $respuestaValores){
-        $mul = $respuestaValores->count_valores * $respuestaValores->txt_valor;
-        echo "# usuarios:".$respuestaValores->count_valores;
+        $mul = $respuestaValores->count_valores;
         $sum += $mul;
         $labels.= '"'.$respuestaValores->txt_valor.'", ';
         $valores.= $respuestaValores->count_valores.',';
     }
 
     foreach($respuestasValores as $respuestaValores){
-        $promedio = ($respuestaValores->count_valores * $respuestaValores->txt_valor * 100) / $sum;
+        $promedio = ($respuestaValores->count_valores * 100) / $sum;
 
-        echo "<br>Valor:".$respuestaValores->txt_valor."<br>Promedio: ".$promedio."%";
+        echo "<br>Valor: ".$respuestaValores->txt_valor."<br>Promedio: ".$promedio."%";
     }
     echo "<br>Total:".$sum."<br><br><br>";
 
@@ -67,9 +73,10 @@ var myChart = new Chart(ctx, {
     View::POS_END,
     'my-button-handler'.$i
 );
-
-
-
+?>
+    </div>
+</div>
+<?php
 $i++;
 }
 

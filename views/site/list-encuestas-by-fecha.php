@@ -1,6 +1,9 @@
 <?php
 use yii\helpers\Html;
 use yii\grid\GridView;
+
+
+$this->params['breadcrumbs'][] = 'Fecha encuestas';
 ?>
 <h1>Encuestas</h1>
 

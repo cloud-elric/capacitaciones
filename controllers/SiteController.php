@@ -173,7 +173,8 @@ class SiteController extends Controller
         ]);
 
         return $this->render('mostrarAsistencia', [
-            'dataProvider' => $dataProvider
+            'dataProvider' => $dataProvider,
+            'fch'=>$fch
         ]);
     }
 
