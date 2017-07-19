@@ -13,6 +13,7 @@ use app\models\EntEventos;
 use yii\data\ActiveDataProvider;
 use app\models\EntUsuariosLista;
 use app\models\EntCapacitaciones;
+use yii\db\Expression;
 
 class SiteController extends Controller
 {
@@ -140,7 +141,12 @@ class SiteController extends Controller
     }
 
     public function actionAsistenciaCapacitaciones($id = 0){
-        $query = EntCapacitaciones::find()->where(['id_evento'=>$id]);
+        $data = EntCapacitaciones::find()->where(['id_evento'=>$id])->one();
+        //Cambiar formato fecha
+        $fch = new \DateTime($data->fch_creacion);
+        $fecha = date_format($fch, 'Y-m-d');
+
+        $query = EntCapacitaciones::find()->where(['id_evento'=>$id])->groupBy([new Expression($fecha)]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query
         ]);
