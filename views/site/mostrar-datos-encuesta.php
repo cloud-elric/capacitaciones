@@ -2,9 +2,9 @@
 use app\models\EntRespuestasEncuestas;
 use yii\web\View;
 $this->params['breadcrumbs'][] = ['label' => 'Fecha encuestas', 'url' => ['list-encuestas-by-fecha']];
-$this->params['breadcrumbs'][] = 'Datos estadisticos';
+$this->params['breadcrumbs'][] = 'Datos estadístico';
 ?>
-<h1>Estadisticas</h1>
+<h1>Estadísticas</h1>
 
 <?php
 $i=0;
