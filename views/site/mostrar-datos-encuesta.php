@@ -34,8 +34,18 @@ foreach($preguntas as $pregunta){?>
 
     foreach($respuestasValores as $respuestaValores){
         $promedio = ($respuestaValores->count_valores * 100) / $sum;
+?>
+    
+        <div class="col-md-2">
+            <div class="panel">
+                <div class="panel-body">
+                    <?=$respuestaValores->txt_valor?><br><span class='label label-default'>Promedio: <?=number_format($promedio, 0)?>%</span>
+                </div>
+            </div>
+        </div> 
+       
 
-        echo "<br>Valor: ".$respuestaValores->txt_valor."<br>Promedio: ".intval($promedio)."%";
+    <?php
     }
     echo "<br>Total:".$sum."<br><br><br>";
 
