@@ -13,7 +13,14 @@ use app\models\EntEventos;
 use yii\data\ActiveDataProvider;
 use app\models\EntUsuariosLista;
 use app\models\EntCapacitaciones;
+
+use app\models\ViewFechasEncuestas;
+use app\models\EntRespuestas;
+use app\models\EntPreguntasEncuestas;
+use app\models\ViewFechasCapacitaciones;
+
 use yii\db\Expression;
+
 
 class SiteController extends Controller
 {
@@ -140,7 +147,7 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionAsistenciaCapacitaciones($id = 0){
+    public function actionAsistenciaCapacitaciones($id = 1){
         $data = EntCapacitaciones::find()->where(['id_evento'=>$id])->one();
         //Cambiar formato fecha
         $fch = new \DateTime($data->fch_creacion);
@@ -150,6 +157,12 @@ class SiteController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => $query
         ]);
+
+        $query = ViewFechasCapacitaciones::find();
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query
+        ]);
+
 
         return $this->render('asistenciaCapacitaciones', [
             'dataProvider' => $dataProvider
@@ -167,7 +180,32 @@ class SiteController extends Controller
         ]);
 
         return $this->render('mostrarAsistencia', [
-            'dataProvider' => $dataProvider
+            'dataProvider' => $dataProvider,
+            'fch'=>$fch
         ]);
+    }
+
+    public function actionListEncuestasByFecha(){
+        $query = ViewFechasEncuestas::find();
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query
+        ]);
+
+        return $this->render("list-encuestas-by-fecha", ['dataProvider' => $dataProvider]);
+    }
+
+    public function actionMostrarDatosEncuesta($fch){
+        $idEncuesta = 1;
+
+        $respuestas = EntRespuestas::find()->where('date_format(fch_creacion,"%Y-%m-%d")=:fch', [':fch'=>$fch])->all();
+        $respuestasFecha = [];
+        foreach($respuestas as $respuesta){
+            $respuestasFecha[] = $respuesta->id_respuesta;
+        }
+
+        $preguntas = EntPreguntasEncuestas::find()->where('id_encuesta=:idEncuesta',[':idEncuesta'=>$idEncuesta])->all();
+    
+
+        return $this->render("mostrar-datos-encuesta", ['respuestasFecha'=>$respuestasFecha, 'preguntas'=>$preguntas]);
     }
 }
