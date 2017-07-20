@@ -186,15 +186,6 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionListEncuestasByFecha(){
-        $query = ViewFechasEncuestas::find();
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query
-        ]);
-
-        return $this->render("list-encuestas-by-fecha", ['dataProvider' => $dataProvider]);
-    }
-
     public function actionMostrarDatosEncuesta($fch){
         $idEncuesta = 1;
 
