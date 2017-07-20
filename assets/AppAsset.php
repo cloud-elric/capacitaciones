@@ -21,6 +21,7 @@ class AppAsset extends AssetBundle
         'css/site.css',
     ];
     public $js = [
+        'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',
