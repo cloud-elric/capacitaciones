@@ -35,7 +35,7 @@ foreach($preguntas as $pregunta){?>
     foreach($respuestasValores as $respuestaValores){
         $promedio = ($respuestaValores->count_valores * 100) / $sum;
 
-        echo "<br>Valor: ".$respuestaValores->txt_valor."<br>Promedio: ".$promedio."%";
+        echo "<br>Valor: ".$respuestaValores->txt_valor."<br>Promedio: ".intval($promedio)."%";
     }
     echo "<br>Total:".$sum."<br><br><br>";
 
