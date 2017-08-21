@@ -39,7 +39,7 @@ echo Html::a('Descargar',['site/descargar-lista'], ['class'=>'btn btn-primary'])
             'template'=>'{download}',
             'buttons' => [
                 'download' => function($url, $model, $key) {     // render your custom button
-                    return Html::a('Descargar',['site/descargar-lista', 'fch'=>$model->fch_creacion], ['class'=>'btn btn-primary']);
+                    return Html::a('Descargar',['site/descargar-lista', 'fch'=>$model->fch], ['class'=>'btn btn-primary']);
                 }
             ]
         ]
