@@ -6,6 +6,11 @@ use yii\grid\GridView;
 $this->params['breadcrumbs'][] = 'Fecha de asistencias';
 ?>
 <h1>Fecha de capacitaciones</h1>
+<div class="pull-right">
+<?php
+echo Html::a('Descargar',['site/descargar-lista'], ['class'=>'btn btn-primary']);
+?>
+</div>
 <?= GridView::widget([
 	'dataProvider' => $dataProvider,
     //'filterModel' => $searchModel,
@@ -26,5 +31,11 @@ $this->params['breadcrumbs'][] = 'Fecha de asistencias';
                 ]);
             }
         ], 
+        
+        'buttons' => [
+            'myButton' => function($url, $model, $key) {     // render your custom button
+                return Html::a('Descargar',['site/descargar-lista', 'fch'=>$model->fch_creacion], ['class'=>'btn btn-primary']);
+            }
+        ]
     ],
 ]); ?>
