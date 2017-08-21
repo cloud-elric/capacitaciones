@@ -174,7 +174,7 @@ class ApiController extends Controller
                 break;
 
             default :
-                $nuevoValor = "Sin valor";
+                $nuevoValor = $valor;
                 break;
         }
 
