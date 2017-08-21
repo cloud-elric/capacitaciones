@@ -231,7 +231,7 @@ class SiteController extends Controller
 
 			$arrayCsv [$i] ['nombreCompleto'] = $usuario->txt_nombre_completo;
 			$arrayCsv [$i] ['empresa'] = $usuario->txt_empresa;
-			$arrayCsv [$i] ['fch'] = $usuario->txt_telefono_celular;
+			$arrayCsv [$i] ['fch'] = $usuario->fch_creacion;
 			
 			$i++;
 		}
