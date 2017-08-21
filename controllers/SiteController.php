@@ -18,7 +18,6 @@ use app\models\ViewFechasEncuestas;
 use app\models\EntRespuestas;
 use app\models\EntPreguntasEncuestas;
 use app\models\ViewFechasCapacitaciones;
-
 use yii\db\Expression;
 
 
@@ -183,6 +182,21 @@ class SiteController extends Controller
             'dataProvider' => $dataProvider,
             'fch'=>$fch
         ]);
+    }
+
+    public function actionMostrarDatosEncuesta($fch){
+        $idEncuesta = 1;
+
+        $respuestas = EntRespuestas::find()->where('date_format(fch_creacion,"%Y-%m-%d")=:fch', [':fch'=>$fch])->all();
+        $respuestasFecha = [];
+        foreach($respuestas as $respuesta){
+            $respuestasFecha[] = $respuesta->id_respuesta;
+        }
+
+        $preguntas = EntPreguntasEncuestas::find()->where('id_encuesta=:idEncuesta',[':idEncuesta'=>$idEncuesta])->all();
+    
+
+        return $this->render("mostrar-datos-encuesta", ['respuestasFecha'=>$respuestasFecha, 'preguntas'=>$preguntas]);
     }
 
     public function actionListEncuestasByFecha(){

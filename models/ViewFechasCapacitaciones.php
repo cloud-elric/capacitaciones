@@ -1,5 +1,4 @@
 <?php
-
 namespace app\models;
 
 use Yii;
@@ -39,3 +38,4 @@ class ViewFechasCapacitaciones extends \yii\db\ActiveRecord
         ];
     }
 }
+
