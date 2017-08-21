@@ -36,8 +36,9 @@ echo Html::a('Descargar',['site/descargar-lista'], ['class'=>'btn btn-primary'])
         ], 
         [
             'class' => 'yii\grid\ActionColumn',
+            'template'=>'{download}',
             'buttons' => [
-                'myButton' => function($url, $model, $key) {     // render your custom button
+                'download' => function($url, $model, $key) {     // render your custom button
                     return Html::a('Descargar',['site/descargar-lista', 'fch'=>$model->fch_creacion], ['class'=>'btn btn-primary']);
                 }
             ]
