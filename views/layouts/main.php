@@ -70,7 +70,7 @@ AppAsset::register($this);
     <div class="container">
         <p class="pull-left">&copy; Capacitación <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= 'Powered by ' ?><a href="http://2gom.com.mx/">2 geeks one monkey</a>></p>
+        <p class="pull-right"><?= 'Powered by ' ?><a href="http://2gom.com.mx/">2 geeks one monkey</a></p>
     </div>
 </footer>
 

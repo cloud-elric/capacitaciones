@@ -208,5 +208,86 @@ class SiteController extends Controller
         return $this->render("list-encuestas-by-fecha", ['dataProvider' => $dataProvider]);
     }
 
+
+    /**
+	 * Descarga un csv con la informacion necesaria
+	 */
+	public function actionDescargarLista($fch=null){
+		$fecha = date($fch);
+		$maniana = strtotime('+1 day',strtotime($fecha));
+        $maniana = date('Y-m-d', $maniana);
+
+        if($fch){
+            $usuarioLista =  EntUsuariosLista::find()->where(['>=', 'fch_creacion', $fch])->andWhere(['<=', 'fch_creacion', $maniana])->all();
+        }else{
+            $usuarioLista =  EntUsuariosLista::find()->all();
+        }
+        
+        
+		$arrayCsv = [ ];
+		$i = 0;
+
+		foreach ( $usuarioLista as $usuario ) {
+
+			$arrayCsv [$i] ['nombreCompleto'] = $data->txt_nombre_completo;
+			$arrayCsv [$i] ['empresa'] = $data->txt_nombre_restaurante;
+			$arrayCsv [$i] ['fch'] = $data->txt_telefono_celular;
+			
+			$i++;
+		}
+
+
+	//print_r($arrayCsv );
+	//exit ();
+
+		$this->downloadSendHeaders ( 'reporte.csv' );
+
+		echo $this->array2Csv ( $arrayCsv );
+		die();
+
+	}
+
+		private function array2Csv($array) {
+		if (count ( $array ) == 0) {
+			return null;
+		}
+		ob_start();
+		$df = fopen ( "php://output", "w" );
+		fputcsv ( $df, [
+				'Nombre completo',
+				'Empresa',				
+				'Fecha',
+		]
+		 );
+
+		foreach ( $array as $row ) {
+			fputcsv ( $df, $row );
+		}
+
+		fclose ( $df );
+		return ob_get_clean();
+	}
+
+
+
+
+	private function downloadSendHeaders($filename) {
+		// disable caching
+		$now = gmdate ( "D, d M Y H:i:s" );
+		// header("Expires: Tue, 03 Jul 2001 06:00:00 GMT");
+		header ( "Cache-Control: max-age=0, no-cache, must-revalidate, proxy-revalidate" );
+		header ( "Last-Modified: {$now} GMT" );
+
+		// force download
+		header ( "Content-Type: application/force-download" );
+		header ( "Content-Type: application/octet-stream" );
+		// comentario sin sentido
+		header ( "Content-Type: application/download" );
+
+		// disposition / encoding on response body
+		header ( "Content-Disposition: attachment;filename={$filename}" );
+		header ( "Content-Transfer-Encoding: binary" );
+	}
+
     
 }

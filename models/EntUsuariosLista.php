@@ -46,7 +46,8 @@ class EntUsuariosLista extends \yii\db\ActiveRecord
         return [
             'id_usuario_lista' => 'Id Usuario Lista',
             'id_capacitacion' => 'Id Capacitacion',
-            'txt_nombre_completo' => 'Txt Nombre Completo',
+            'txt_nombre_completo' => 'Nombre Completo',
+            'txt_empresa'=>'Empresa',
             'fch_creacion' => 'Fch Creacion',
         ];
     }
