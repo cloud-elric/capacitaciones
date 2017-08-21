@@ -17,6 +17,7 @@ use app\models\EntCapacitaciones;
 use app\models\ViewFechasEncuestas;
 use app\models\EntRespuestas;
 use app\models\EntPreguntasEncuestas;
+use app\models\ViewFechasCapacitaciones;
 
 use yii\db\Expression;
 
@@ -156,6 +157,12 @@ class SiteController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => $query
         ]);
+
+        $query = ViewFechasCapacitaciones::find();
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query
+        ]);
+
 
         return $this->render('asistenciaCapacitaciones', [
             'dataProvider' => $dataProvider

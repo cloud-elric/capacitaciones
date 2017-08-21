@@ -25,7 +25,7 @@ class ApiController extends Controller
         $respuesta['error'] = true;
         $respuesta['message'] = 'Faltan datos';
 
-        if(isset($_REQUEST['nombre']) && isset($_REQUEST['apellido']) && isset($_REQUEST['correo'])){
+        if(isset($_REQUEST['nombre']) && isset($_REQUEST['apellido']) && isset($_REQUEST['correo'])&& isset($_REQUEST['empresa'])){
             //$listaAsistentes = $_REQUEST['asistentes'];
 
             $transaction = Yii::$app->db->beginTransaction(Transaction::SERIALIZABLE);
@@ -38,6 +38,7 @@ class ApiController extends Controller
                     $asistente->txt_nombre_completo = $_REQUEST['nombre'];
                     $asistente->txt_apellido = $_REQUEST['apellido'];
                     $asistente->txt_correo = $_REQUEST['correo'];
+                    $asistente->txt_empresa = $_REQUEST['empresa'];
                     $asistente->id_capacitacion = 1;//$capacitacion->id_capacitacion;
 
                     if(!$asistente->save()){
@@ -92,7 +93,7 @@ class ApiController extends Controller
         $transaction = Yii::$app->db->beginTransaction(Transaction::SERIALIZABLE);
 
         if($encuesta){
-            if(isset($_REQUEST['valor0']) && isset($_REQUEST['valor1']) && isset($_REQUEST['valor2']) && isset($_REQUEST['valor3']) && isset($_REQUEST['valor4'])){
+            if(isset($_REQUEST['valor0']) && isset($_REQUEST['valor1']) && isset($_REQUEST['valor2']) && isset($_REQUEST['valor3']) && isset($_REQUEST['valor4'])&& isset($_REQUEST['valor5'])){
                 $respuestaM = new EntRespuestas();
                 $respuestaM->id_encuesta = $encuesta->id_encuesta;
                 $respuestaM->save();
@@ -122,6 +123,11 @@ class ApiController extends Controller
                  if(!$this->guardarPregunta($respuestaM->id_respuesta, $_REQUEST['valor4'], 5)){
                     $error = true;
                     $respuesta['message'] = 'No se pueod guardar la respuesta 4';
+                }
+
+                if(!$this->guardarPregunta($respuestaM->id_respuesta, $_REQUEST['valor5'], 6)){
+                    $error = true;
+                    $respuesta['message'] = 'No se pudieron guardar los comentarios';
                 }
 
                 if($error){

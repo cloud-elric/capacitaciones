@@ -12,11 +12,11 @@ $this->params['breadcrumbs'][] = 'Fecha de asistencias';
     'columns' => [
         ['class' => 'yii\grid\SerialColumn'],
         [
-            'attribute' => 'fch_creacion',
+            'attribute' => 'fch',
             'format' => 'raw',
             'value' => function($data){
                 //Cambiar formato fecha
-                $fch = new DateTime($data->fch_creacion);
+                $fch = new DateTime($data->fch);
                 $fecha = date_format($fch, 'j-F-Y');
                 $fecha2 = date_format($fch, 'Y-m-d');
 
