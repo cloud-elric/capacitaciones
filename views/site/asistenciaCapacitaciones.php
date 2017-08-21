@@ -11,16 +11,13 @@ $this->params['breadcrumbs'][] = 'Fecha de asistencias';
 echo Html::a('Descargar',['site/descargar-lista'], ['class'=>'btn btn-primary']);
 ?>
 </div>
+
 <?= GridView::widget([
 	'dataProvider' => $dataProvider,
     //'filterModel' => $searchModel,
     'columns' => [
         ['class' => 'yii\grid\SerialColumn',
-        'buttons' => [
-            'myButton' => function($url, $model, $key) {     // render your custom button
-                return Html::a('Descargar',['site/descargar-lista', 'fch'=>$model->fch_creacion], ['class'=>'btn btn-primary']);
-            }
-        ]
+        
     ],
         [
             'attribute' => 'fch',
@@ -37,7 +34,14 @@ echo Html::a('Descargar',['site/descargar-lista'], ['class'=>'btn btn-primary'])
                 ]);
             }
         ], 
-        
+        [
+            'class' => 'yii\grid\ActionColumn',
+            'buttons' => [
+                'myButton' => function($url, $model, $key) {     // render your custom button
+                    return Html::a('Descargar',['site/descargar-lista', 'fch'=>$model->fch_creacion], ['class'=>'btn btn-primary']);
+                }
+            ]
+        ]
         
     ],
 ]); ?>
