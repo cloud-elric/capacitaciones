@@ -95,7 +95,6 @@ $i++;
 
 $respuestasValores = EntRespuestasEncuestas::find()
     ->where('id_pregunta=:idPregunta', [':idPregunta'=>$pregunta->id_pregunta])
-    ->andWhere('id_tipo_pregunta=:idTipoPregunta', [':idTipoPregunta'=>$pregunta->id_tipo_pregunta])
     ->one();
 ?>
 <div class="panel panel-primary">
