@@ -8,7 +8,9 @@ $this->params['breadcrumbs'][] = 'Datos estadístico';
 
 <?php
 $i=0;
-foreach($preguntas as $pregunta){?>
+foreach($preguntas as $pregunta){
+    if($pregunta->id_tipo_pregunta==1){
+    ?>
 
 <div class="panel panel-primary">
     <div class="panel-heading">
@@ -19,6 +21,7 @@ foreach($preguntas as $pregunta){?>
     $respuestasValores = EntRespuestasEncuestas::find()
                             ->select(['COUNT(*) AS count_valores', 'txt_valor'])
                             ->where('id_pregunta=:idPregunta', [':idPregunta'=>$pregunta->id_pregunta])
+                            ->andWhere('id_tipo_pregunta=:idTipoPregunta', [':idTipoPregunta'=>1])
                             ->andWhere(['in','id_respuesta_creacion',$respuestasFecha])
                             ->groupBy(['txt_valor'])
                             ->all();
@@ -88,6 +91,35 @@ var myChart = new Chart(ctx, {
 </div>
 <?php
 $i++;
+
+}else{
+
+$respuestasValores = EntRespuestasEncuestas::find()
+    ->where('id_pregunta=:idPregunta', [':idPregunta'=>$pregunta->id_pregunta])
+    ->andWhere('id_tipo_pregunta=:idTipoPregunta', [':idTipoPregunta'=>$pregunta->id_tipo_pregunta])
+    ->one();
+?>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h4><?=$pregunta->txt_pregunta?></h4>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel">
+                    <div class="panel-body">
+                        <p>
+                            <?=$respuestasValores->txt_valor?>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div>
+
+<?php
+}
 }
 
 
