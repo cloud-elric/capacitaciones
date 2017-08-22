@@ -28,25 +28,29 @@ foreach($preguntas as $pregunta){
     foreach($respuestasValores as $respuestaValores){
         $elementosEncontrados []= $respuestaValores->txt_valor;
     } 
-    
-    $elementoFaltante = new EntRespuestasEncuestas();
-    if(!array_search('Muy mala', $elementosEncontrados)){
+
+    if(!in_array('Muy mala', $elementosEncontrados)){
+        $elementoFaltante = new EntRespuestasEncuestas();
         $elementoFaltante->txt_valor = "Muy mala";
         $respuestasValores[] = $elementoFaltante;
     }
-    if(!array_search('Mala', $elementosEncontrados)){
+    if(!in_array('Mala', $elementosEncontrados)){
+        $elementoFaltante = new EntRespuestasEncuestas();
         $elementoFaltante->txt_valor = "Mala";
         $respuestasValores[] = $elementoFaltante;
     }
-    if(!array_search('Regular', $elementosEncontrados)){
+    if(!in_array('Regular', $elementosEncontrados)){
+        $elementoFaltante = new EntRespuestasEncuestas();
         $elementoFaltante->txt_valor = "Regular";
         $respuestasValores[] = $elementoFaltante;
     }
-    if(!array_search('Buena', $elementosEncontrados)){
+    if(!in_array("Buena", $elementosEncontrados)){
+        $elementoFaltante = new EntRespuestasEncuestas();
         $elementoFaltante->txt_valor = "Buena";
         $respuestasValores[] = $elementoFaltante;
     }
-    if(!array_search('Muy buena', $elementosEncontrados)){
+    if(!in_array('Muy buena', $elementosEncontrados)){
+        $elementoFaltante = new EntRespuestasEncuestas();
         $elementoFaltante->txt_valor = "Muy buena";
         $respuestasValores[] = $elementoFaltante;
     }

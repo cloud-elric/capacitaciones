@@ -229,7 +229,7 @@ class SiteController extends Controller
 
 		foreach ( $usuarioLista as $usuario ) {
 
-			$arrayCsv [$i] ['nombreCompleto'] = $usuario->txt_nombre_completo;
+			$arrayCsv [$i] ['nombreCompleto'] = $usuario->txt_nombre_completo." ".$usuario->txt_apellido;
 			$arrayCsv [$i] ['empresa'] = $usuario->txt_empresa;
 			$arrayCsv [$i] ['fch'] = $usuario->fch_creacion;
 			
