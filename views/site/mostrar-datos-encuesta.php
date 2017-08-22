@@ -24,6 +24,34 @@ foreach($preguntas as $pregunta){
                             ->andWhere(['in','id_respuesta_creacion',$respuestasFecha])
                             ->groupBy(['txt_valor'])
                             ->all();
+    $elementosEncontrados = [];
+    foreach($respuestasValores as $respuestaValores){
+        $elementosEncontrados = [$respuestaValores->txt_valor];
+    } 
+    
+    $elementoFaltante = new EntRespuestasEncuestas();
+    if(!array_search('Muy mala', $elementosEncontrados)){
+        $elementoFaltante->txt_valor = "Muy mala";
+        $respuestasValores[] = $elementoFaltante;
+    }
+    if(!array_search('Mala', $array)){
+        $elementoFaltante->txt_valor = "Mala";
+        $respuestasValores[] = $elementoFaltante;
+    }
+    if(!array_search('Regular', $array)){
+        $elementoFaltante->txt_valor = "Regular";
+        $respuestasValores[] = $elementoFaltante;
+    }
+    if(!array_search('Buena', $array)){
+        $elementoFaltante->txt_valor = "Buena";
+        $respuestasValores[] = $elementoFaltante;
+    }
+    if(!array_search('Muy buena', $array)){
+        $elementoFaltante->txt_valor = "Muy buena";
+        $respuestasValores[] = $elementoFaltante;
+    }
+    
+
     $sum = 0;
     $labels = '';
     $valores = '';
