@@ -34,19 +34,19 @@ foreach($preguntas as $pregunta){
         $elementoFaltante->txt_valor = "Muy mala";
         $respuestasValores[] = $elementoFaltante;
     }
-    if(!array_search('Mala', $array)){
+    if(!array_search('Mala', $elementosEncontrados)){
         $elementoFaltante->txt_valor = "Mala";
         $respuestasValores[] = $elementoFaltante;
     }
-    if(!array_search('Regular', $array)){
+    if(!array_search('Regular', $elementosEncontrados)){
         $elementoFaltante->txt_valor = "Regular";
         $respuestasValores[] = $elementoFaltante;
     }
-    if(!array_search('Buena', $array)){
+    if(!array_search('Buena', $elementosEncontrados)){
         $elementoFaltante->txt_valor = "Buena";
         $respuestasValores[] = $elementoFaltante;
     }
-    if(!array_search('Muy buena', $array)){
+    if(!array_search('Muy buena', $elementosEncontrados)){
         $elementoFaltante->txt_valor = "Muy buena";
         $respuestasValores[] = $elementoFaltante;
     }
