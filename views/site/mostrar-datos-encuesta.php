@@ -21,7 +21,6 @@ foreach($preguntas as $pregunta){
     $respuestasValores = EntRespuestasEncuestas::find()
                             ->select(['COUNT(*) AS count_valores', 'txt_valor'])
                             ->where('id_pregunta=:idPregunta', [':idPregunta'=>$pregunta->id_pregunta])
-                            ->andWhere('id_tipo_pregunta=:idTipoPregunta', [':idTipoPregunta'=>1])
                             ->andWhere(['in','id_respuesta_creacion',$respuestasFecha])
                             ->groupBy(['txt_valor'])
                             ->all();
