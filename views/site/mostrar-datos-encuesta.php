@@ -95,7 +95,8 @@ $i++;
 
 $respuestasValores = EntRespuestasEncuestas::find()
     ->where('id_pregunta=:idPregunta', [':idPregunta'=>$pregunta->id_pregunta])
-    ->one();
+    ->andWhere(['in','id_respuesta_creacion',$respuestasFecha])
+    ->all();
 ?>
 <div class="panel panel-primary">
     <div class="panel-heading">
@@ -105,11 +106,17 @@ $respuestasValores = EntRespuestasEncuestas::find()
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel">
+                <?php
+                foreach($respuestasValores as $respuesta){
+                ?>
                     <div class="panel-body">
                         <p>
-                            <?=$respuestasValores->txt_valor?>
+                            <?=$respuesta->txt_valor?>
                         </p>
                     </div>
+                <?php
+                }
+                ?>
                 </div>
             </div>
         </div>
