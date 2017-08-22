@@ -26,7 +26,7 @@ foreach($preguntas as $pregunta){
                             ->all();
     $elementosEncontrados = [];
     foreach($respuestasValores as $respuestaValores){
-        $elementosEncontrados = [$respuestaValores->txt_valor];
+        $elementosEncontrados []= $respuestaValores->txt_valor;
     } 
     
     $elementoFaltante = new EntRespuestasEncuestas();
