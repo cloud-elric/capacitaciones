@@ -12,7 +12,11 @@ $this->params['breadcrumbs'][] = $fch;
     //'filterModel' => $searchModel,
     'columns' => [
         ['class' => 'yii\grid\SerialColumn'],
-        'txt_nombre_completo',
+        [
+            'attribute' => 'txt_nombre_completo',
+            'label' => 'Nombre',
+            'value' => function($model) { return $model->txt_nombre_completo  . " " . $model->txt_apellido ;},
+        ],
         'txt_empresa'
     ],
 ]); ?>
