@@ -62,7 +62,6 @@ foreach($preguntas as $pregunta){
     $ordenarRespuestas = [];
     foreach($respuestasValores as $ordenar){
         $ordenar->orden;
-        echo $ordenar->num_orden;
         $ordenarRespuestas[] = $ordenar;
     }
 
