@@ -36,7 +36,7 @@ foreach($preguntas as $pregunta){
         return strcmp($a->num_orden, $b->num_orden);
     }
 
-    usort($restrictedEvents, "cmp");
+    usort($ordenarRespuestas, "cmp");
 
     $respuestasValores = $ordenarRespuestas;
 
