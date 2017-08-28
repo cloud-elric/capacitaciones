@@ -24,6 +24,25 @@ foreach($preguntas as $pregunta){
                             ->andWhere(['in','id_respuesta_creacion',$respuestasFecha])
                             ->groupBy(['txt_valor'])
                             ->all();
+    
+    $ordenarRespuestas = [];
+    foreach($respuestasValores as $ordenar){
+        $ordenar->num_orden = $ordenar->orden;
+        $ordenarRespuestas[] = $ordenar;
+    }
+
+    function cmp($a, $b)
+    {
+        return strcmp($a->num_orden, $b->num_orden);
+    }
+
+    usort($restrictedEvents, "cmp");
+
+    $respuestasValores = $ordenarRespuestas;
+
+   
+
+
     $elementosEncontrados = [];
     foreach($respuestasValores as $respuestaValores){
         $elementosEncontrados []= $respuestaValores->txt_valor;

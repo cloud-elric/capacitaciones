@@ -18,7 +18,8 @@ use Yii;
 class EntRespuestasEncuestas extends \yii\db\ActiveRecord
 {
 
-    public $count_valores;
+    public $count_valores; 
+    public $num_orden;
     /**
      * @inheritdoc
      */
@@ -68,5 +69,29 @@ class EntRespuestasEncuestas extends \yii\db\ActiveRecord
     public function getIdRespuestaCreacion()
     {
         return $this->hasOne(EntRespuestas::className(), ['id_respuesta' => 'id_respuesta_creacion']);
+    }
+
+    public function getOrden(){
+        switch ($this->txt_valor) {
+            case 'Muy mala' :
+                $nuevoValor = "1";
+                break;
+            case 'Mala' :
+                $nuevoValor = "2";
+                break;
+            case 'Regular' :
+                $nuevoValor = "3";
+                break;
+            case 'Buena' :
+                $nuevoValor = "4";
+                break;
+            case 'Muy buena' :
+                $nuevoValor = "5";
+                break;
+
+            default :
+                $nuevoValor = $valor;
+                break;
+        }
     }
 }
