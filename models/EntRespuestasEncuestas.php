@@ -74,23 +74,23 @@ class EntRespuestasEncuestas extends \yii\db\ActiveRecord
     public function getOrden(){
         switch ($this->txt_valor) {
             case 'Muy mala' :
-                $nuevoValor = "1";
+                $this->num_orden = "1";
                 break;
             case 'Mala' :
-                $nuevoValor = "2";
+                $this->num_orden = "2";
                 break;
             case 'Regular' :
-                $nuevoValor = "3";
+                $this->num_orden = "3";
                 break;
             case 'Buena' :
-                $nuevoValor = "4";
+                $this->num_orden = "4";
                 break;
             case 'Muy buena' :
-                $nuevoValor = "5";
+                $this->num_orden = "5";
                 break;
 
             default :
-                $nuevoValor = $valor;
+                $this->num_orden = 0;
                 break;
         }
     }
