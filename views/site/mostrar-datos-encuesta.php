@@ -3,6 +3,10 @@ use app\models\EntRespuestasEncuestas;
 use yii\web\View;
 $this->params['breadcrumbs'][] = ['label' => 'Fecha encuestas', 'url' => ['list-encuestas-by-fecha']];
 $this->params['breadcrumbs'][] = 'Datos estadístico';
+function cmp($a, $b)
+{
+    return strcmp($a->num_orden, $b->num_orden);
+}
 ?>
 <h1>Estadísticas</h1>
 
@@ -31,10 +35,7 @@ foreach($preguntas as $pregunta){
         $ordenarRespuestas[] = $ordenar;
     }
 
-    function cmp($a, $b)
-    {
-        return strcmp($a->num_orden, $b->num_orden);
-    }
+   
 
     usort($ordenarRespuestas, "cmp");
 
