@@ -229,7 +229,8 @@ class SiteController extends Controller
 
 		foreach ( $usuarioLista as $usuario ) {
 
-			$arrayCsv [$i] ['nombreCompleto'] = $usuario->txt_nombre_completo." ".$usuario->txt_apellido;
+            $arrayCsv [$i] ['nombreCompleto'] = $usuario->txt_nombre_completo." ".$usuario->txt_apellido;
+            $arrayCsv [$i] ['email'] = $usuario->txt_correo;
 			$arrayCsv [$i] ['empresa'] = $usuario->txt_empresa;
 			$arrayCsv [$i] ['fch'] = $usuario->fch_creacion;
 			
@@ -254,7 +255,8 @@ class SiteController extends Controller
 		ob_start();
 		$df = fopen ( "php://output", "w" );
 		fputcsv ( $df, [
-				'Nombre completo',
+                'Nombre completo',
+                'Correo',
 				'Empresa',				
 				'Fecha',
 		]
